@@ -2,7 +2,7 @@
 
 # 🏡 Namma HomeStay
 
-**Discover & host authentic Karnataka rural homestays**
+### *Empowering rural Karnataka families to share their home, food & culture*
 
 ![Android](https://img.shields.io/badge/Android-API%2024%2B-3DDC84?style=flat&logo=android&logoColor=white)
 ![Kotlin](https://img.shields.io/badge/Kotlin-1.9-7F52FF?style=flat&logo=kotlin&logoColor=white)
@@ -14,33 +14,50 @@
 
 ---
 
-## ✨ Features
+## 🌿 The Problem
+
+Families in Karnataka's coastal and rural belts have spare rooms and serve incredible local food — but they're not tech-savvy enough to list on major booking platforms. They miss out on the growing **Eco-Tourism** and **Agri-Tourism** market.
+
+**Namma HomeStay** is a simplified host portal built *for farmers and homemakers* — not hotel managers.
+
+---
+
+## ✨ What It Does
 
 | For Hosts | For Travellers |
 |-----------|---------------|
-| 📋 List & manage homestays | 🔍 Browse & search listings |
-| 🛏️ Room management with images | 💬 Send inquiries & chat |
-| 🍱 Daily menu updates | ❤️ Wishlist & save stays |
-| 📅 Block dates per room | 🏠 View rooms, amenities & photos |
-| 📨 Inquiry inbox with real-time chat | 📍 Nearby attractions |
-| ✅ Safety verification checklist | — |
+| 📷 Home profile with room & farm photos | 🔍 Browse & search local homestays |
+| 🍱 Update today's menu in under 1 minute | ❤️ Wishlist & save favourite stays |
+| 🛏️ Manage rooms with availability & pricing | 💬 Send inquiries & chat with hosts |
+| 📅 Block dates per room | 📍 Discover nearby secret spots |
+| 📨 Inquiry inbox with call & chat | 🏠 View rooms, food menu & amenities |
+| ✅ Safety & cleanliness verification checklist | — |
 
-**AI-Powered (Gemini 1.5 Flash)**
-- Auto-generate listing descriptions
-- Analyse food photos to identify dishes
-- Voice-to-dish menu entry
-- AI dish description generation
+**Powered by Gemini 1.5 Flash AI**
+- 📸 Snap a food photo → AI identifies the dish and fills in details
+- 🎙️ Speak dish names → voice-to-menu entry
+- ✍️ AI-generated listing descriptions from your amenities & location
+
+---
+
+## 🎯 Impact Goals
+
+- **Rural Income** — A third source of income for farming families
+- **Sustainable Tourism** — Promoting low-impact, local-first travel
+- **Digital Literacy** — Teaching micro-entrepreneurs to manage a digital business
 
 ---
 
 ## 🛠 Tech Stack
 
-- **UI** — Jetpack Compose + Material 3
-- **Auth** — Firebase Authentication (Email/Password)
-- **Database** — Cloud Firestore (images stored as base64)
-- **AI** — Google Gemini 1.5 Flash via `generativeai` SDK
-- **Image Loading** — Coil 2 with custom `DataUriFetcher` for base64
-- **Navigation** — Jetpack Navigation Compose
+| Layer | Technology |
+|-------|-----------|
+| UI | Jetpack Compose + Material 3 |
+| Auth | Firebase Authentication (Email/Password) |
+| Database | Cloud Firestore — real-time menu & availability |
+| Images | Base64 in Firestore + Coil 2 with custom `DataUriFetcher` |
+| AI | Google Gemini 1.5 Flash (`generativeai` SDK 0.9.0) |
+| Navigation | Jetpack Navigation Compose |
 
 ---
 
@@ -57,17 +74,17 @@ cd Namma-HomeStay
 - Enable **Authentication** (Email/Password) and **Firestore**
 - Download `google-services.json` → place it in the `app/` directory
 
-> ⚠️ `google-services.json` is gitignored — add your own file. Never commit it publicly.
+> ⚠️ `google-services.json` is gitignored — add your own. Never commit it publicly.
 
 ### 3. Gemini API Key
-Open `app/src/main/java/com/namma/homestay/ai/GeminiService.kt` and replace:
+In `app/src/main/java/com/namma/homestay/ai/GeminiService.kt`, replace:
 ```kotlin
 private const val API_KEY = "YOUR_GEMINI_API_KEY_HERE"
 ```
-Get a free key at [aistudio.google.com](https://aistudio.google.com/app/apikey)
+Get a free key at [aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey)
 
 ### 4. Build & Run
-Open in **Android Studio**, sync Gradle, and run on a device/emulator (API 24+).
+Open in **Android Studio**, sync Gradle, run on device/emulator (API 24+).
 
 ---
 
@@ -75,23 +92,26 @@ Open in **Android Studio**, sync Gradle, and run on a device/emulator (API 24+).
 
 ```
 app/src/main/java/com/namma/homestay/
-├── ai/               # GeminiService — all AI features
-├── models/           # Data classes (Listing, Room, Dish, Inquiry…)
-├── repository/       # FirebaseRepository — all Firestore operations
+├── ai/               # GeminiService — food photo analysis, voice-to-dish, AI descriptions
+├── models/           # Data classes (Listing, Room, Dish, Menu, Inquiry…)
+├── repository/       # FirebaseRepository — all Firestore & Auth operations
 └── ui/
-    ├── screens/      # All Compose screens (17 screens)
-    └── theme/        # Colors, typography, theme
+    ├── screens/      # 17 Compose screens (host + traveller flows)
+    └── theme/        # Warm Karnataka-inspired color palette & typography
 ```
 
 ---
 
-## 📸 Screens
+## 🗺 User Flow
 
-`Welcome` → `Role Selection` → **Host:** `Dashboard › Listings › Rooms › Menu › Inquiries › Chat`  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Traveller:** `Home › Listing Detail › Inquire › Chat › Wishlist`
+```
+Welcome → Role Selection
+    ├── Host:      Dashboard → Listings → Rooms → Daily Menu → Inquiries → Chat
+    └── Traveller: Browse → Listing Detail → Inquire → Chat → Wishlist
+```
 
 ---
 
 <div align="center">
-Made with ☕ for Karnataka's homestay hosts
+Built for the <strong>Namma Karnataka</strong> homestay community ☕🌿
 </div>

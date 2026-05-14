@@ -22,23 +22,21 @@ class BugExplorationUnitTests {
 
     // ─────────────────────────────────────────────────────────────────────────
     // Test 1.4 — GeminiService API Key
-    // Bug: API_KEY = "AIzaSyBNpOJina2996lvJcrdcwPG9CI0uHykEMc" (expired)
-    // Expected: API_KEY == "AIzaSyB78vMWFzXQsIm8FJlWDiIXXpmyD4ZOizw"
+    // Bug: API_KEY was set to an expired/wrong key
+    // Expected: API_KEY is a non-empty, non-placeholder value
     // ─────────────────────────────────────────────────────────────────────────
     @Test
-    @DisplayName("Test 1.4: GeminiService uses correct (non-expired) API key")
+    @DisplayName("Test 1.4: GeminiService uses a configured (non-placeholder) API key")
     fun test1_4_geminiServiceUsesCorrectApiKey() {
         val geminiClass = com.namma.homestay.ai.GeminiService::class.java
         val apiKeyField = geminiClass.getDeclaredField("API_KEY")
         apiKeyField.isAccessible = true
         val actualKey = apiKeyField.get(com.namma.homestay.ai.GeminiService) as String
 
-        val expectedKey = "AIzaSyB78vMWFzXQsIm8FJlWDiIXXpmyD4ZOizw"
-        // EXPECTED TO FAIL on unfixed code: actual key is the expired one
-        assertEquals(
-            expectedKey,
-            actualKey,
-            "Bug 4: GeminiService.API_KEY should be the correct key but is expired/wrong"
+        // Key must be set to a real value (not the placeholder) before running
+        assertFalse(
+            actualKey == "YOUR_GEMINI_API_KEY_HERE" || actualKey.isBlank(),
+            "Bug 4: GeminiService.API_KEY is still a placeholder — set a real Gemini API key"
         )
     }
 
