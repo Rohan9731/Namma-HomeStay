@@ -1,0 +1,22 @@
+*.iml
+.gradle
+/local.properties
+/.idea
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+# Android build outputs
+app/build/
+
+# Gradle wrapper jar (keep .properties, not the jar)
+gradle/wrapper/gradle-wrapper.jar
+
+# Kotlin/Java compiled
+**/*.class
+
+# Google Services — contains Firebase project keys, do NOT commit
+app/google-services.json
